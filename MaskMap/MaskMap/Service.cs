@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MaskMap.Service
 {
-    public class Service
+    public class MaskService
     {
         public FeatureCollection useHttpWebRequest_Get()
         {
@@ -26,8 +26,8 @@ namespace MaskMap.Service
                     using (var reader = new StreamReader(stream))
                     {
                         var temp = reader.ReadToEnd();
-                        FeatureCollection cart = JsonConvert.DeserializeObject<FeatureCollection>(temp);
-                        return cart;
+                        FeatureCollection col = JsonConvert.DeserializeObject<FeatureCollection>(temp);
+                        return col;
                     }
                 }
                 else

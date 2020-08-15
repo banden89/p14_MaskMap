@@ -41,4 +41,11 @@ namespace MaskMap.Models
         public string type { get; set; }
         public List<decimal> coordinates { get; set; }
     }   
+
+    public class pharmacy
+    {
+        public string name { get; set; }
+        public decimal las { get; set; }
+        public decimal lng { get; set; }
+    }
 }

@@ -15,32 +15,27 @@ namespace MaskMap.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            return View();
+        }
 
-            System.Net.HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json");
-            request.Method = WebRequestMethods.Http.Get;
-            request.ContentType = "application/json";
-            using (var response = (HttpWebResponse)request.GetResponse())
+        [HttpPost]
+        public ActionResult GetPharmacy()
+        {
+            MaskService service = new MaskService();
+            FeatureCollection col = service.useHttpWebRequest_Get();
+            List<pharmacy> pharmacy = new List<pharmacy>();
+
+            for (int i = 0; i < col.features.Count(); i++)
             {
-                if (response.StatusCode == HttpStatusCode.OK)
+                pharmacy.Add(new pharmacy()
                 {
-                    using (var stream = response.GetResponseStream())
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var temp = reader.ReadToEnd();
-                        FeatureCollection cart = JsonConvert.DeserializeObject<FeatureCollection>(temp);
-                    }
-                }
-                else
-                {
-                    return null;
-                }
+                    name = col.features[i].properties.name,
+                    las = col.features[i].geometry.coordinates[0],
+                    lng = col.features[i].geometry.coordinates[1]
+                });
             }
 
-
-
-
-            return View();
+            return Json(pharmacy);
         }
     }
 }
