@@ -47,5 +47,10 @@ namespace MaskMap.Models
         public string name { get; set; }
         public decimal las { get; set; }
         public decimal lng { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
+        public decimal mask_adult { get; set; }
+        public decimal mask_child { get; set; }
+        public string updated { get; set; }
     }
 }

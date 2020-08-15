@@ -31,7 +31,12 @@ namespace MaskMap.Controllers
                 {
                     name = col.features[i].properties.name,
                     las = col.features[i].geometry.coordinates[0],
-                    lng = col.features[i].geometry.coordinates[1]
+                    lng = col.features[i].geometry.coordinates[1],
+                    phone = col.features[i].properties.phone,
+                    address = col.features[i].properties.address,
+                    mask_adult = col.features[i].properties.mask_adult,
+                    mask_child = col.features[i].properties.mask_child,
+                    updated = col.features[i].properties.updated
                 });
             }
 
